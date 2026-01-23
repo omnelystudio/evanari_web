@@ -6,7 +6,7 @@
   <title>Vístete con EVANARI</title>
   <meta name="description" content="Moda para brillar. Compra fácil por WhatsApp." />
 
-  <!-- VERSION: 1 -->
+  <!-- VERSION: 2 -->
 
   <style>
     :root{
@@ -33,15 +33,21 @@
       border-radius:22px;
       overflow:hidden;
       box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+      isolation: isolate; /* ✅ evita bugs de apilado */
     }
 
+    /* ✅ Imagen abajo */
     .poster img{
       width:100%;
       height:auto;
       display:block;
+
+      position: relative;
+      z-index: 1;
     }
 
-    /* ZONAS CLICABLES (POR DEFECTO INVISIBLES) */
+    /* ✅ Hotspots encima (siempre) */
     .hotspot{
       position:absolute;
       display:block;
@@ -51,11 +57,14 @@
       cursor:pointer;
       pointer-events:auto;
       -webkit-tap-highlight-color: transparent;
+
+      z-index: 999;
     }
 
     /* ===== MODO DEBUG ===== */
     body.debug .hotspot{
       outline: 2px solid rgba(0,0,0,.35);
+      z-index: 9999;
     }
 
     /* WhatsApp (NEGRO) */
@@ -155,14 +164,14 @@
       border-radius: 999px;
       background: rgba(0,0,0,.55);
       color: #fff;
-      z-index: 9999;
+      z-index: 999999;
       user-select: none;
       backdrop-filter: blur(6px);
     }
   </style>
 </head>
 
-<!-- ✅ DEBUG ACTIVADO: quita "debug" cuando ya esté ajustado -->
+<!-- ✅ DEBUG ACTIVADO: cuando termines de ajustar, quita class="debug" -->
 <body class="debug">
 
   <div class="wrap">
@@ -232,7 +241,7 @@
     <div class="note">Web creada por OMNELY’S Studio · Demo EVANARI</div>
   </div>
 
-  <div class="version-badge">Versión 1</div>
+  <div class="version-badge">Versión 2</div>
 </body>
 </html>
 
