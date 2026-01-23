@@ -11,13 +11,6 @@
   <style>
     :root{
       --max-width: 520px;
-      --version: "Versión 1";
-
-      /* ===== DEBUG =====
-         1 = se ven los botones con color
-         0 = invisibles
-      */
-      --debug: 1;
     }
 
     body{
@@ -48,58 +41,68 @@
       display:block;
     }
 
-    /* ZONAS CLICABLES */
+    /* ZONAS CLICABLES (POR DEFECTO INVISIBLES) */
     .hotspot{
       position:absolute;
       display:block;
+      background:transparent;
+      outline:none;
       border-radius:12px;
       cursor:pointer;
       pointer-events:auto;
       -webkit-tap-highlight-color: transparent;
-
-      /* si debug=0 -> transparente */
-      background: rgba(0,0,0, calc(var(--debug) * 0));
-      outline: calc(var(--debug) * 2px) solid rgba(0,0,0,.35);
     }
 
-    /* ===== COLORES DEBUG POR TIPO ===== */
+    /* ===== MODO DEBUG ===== */
+    body.debug .hotspot{
+      outline: 2px solid rgba(0,0,0,.35);
+    }
 
     /* WhatsApp (NEGRO) */
-    .hs-wa-top,
-    .hs-wa-bottom{
-      background: rgba(0, 0, 0, calc(var(--debug) * 0.35)) !important;
+    body.debug .hs-wa-top,
+    body.debug .hs-wa-bottom{
+      background: rgba(0,0,0,.35) !important;
+      border-radius:999px;
     }
 
     /* Instagram (VERDE) */
-    .hs-ig{
-      background: rgba(0, 255, 0, calc(var(--debug) * 0.35)) !important;
+    body.debug .hs-ig{
+      background: rgba(0,255,0,.35) !important;
+      border-radius:10px;
     }
 
     /* TikTok (AZUL) */
-    .hs-tt{
-      background: rgba(0, 150, 255, calc(var(--debug) * 0.35)) !important;
+    body.debug .hs-tt{
+      background: rgba(0,150,255,.35) !important;
+      border-radius:10px;
     }
 
     /* Productos (ROSA) */
-    .hs-p1,.hs-p2,.hs-p3,.hs-p4{
-      background: rgba(255, 0, 200, calc(var(--debug) * 0.25)) !important;
+    body.debug .hs-p1,
+    body.debug .hs-p2,
+    body.debug .hs-p3,
+    body.debug .hs-p4{
+      background: rgba(255,0,200,.25) !important;
+      border-radius:999px;
     }
 
-    /* Menú (NARANJA suave) */
-    .hs-novedades,.hs-catalogo,.hs-comprar,.hs-contacto{
-      background: rgba(255, 140, 0, calc(var(--debug) * 0.20)) !important;
+    /* Menú (NARANJA) */
+    body.debug .hs-novedades,
+    body.debug .hs-catalogo,
+    body.debug .hs-comprar,
+    body.debug .hs-contacto{
+      background: rgba(255,140,0,.20) !important;
       border-radius:10px;
     }
 
     /* ===== POSICIONES ===== */
 
-    /* WhatsApp (arriba/abajo) */
+    /* WhatsApp */
     .hs-wa-top{
       left:32%;
       top:16.5%;
       width:36%;
       height:4.3%;
-      border-radius:999px;
     }
 
     .hs-wa-bottom{
@@ -107,7 +110,6 @@
       top:86.3%;
       width:64%;
       height:5%;
-      border-radius:999px;
     }
 
     /* Menú */
@@ -116,11 +118,11 @@
     .hs-comprar{   left:67%; top:3.2%; width:18%; height:3.2%; }
     .hs-contacto{  left:82%; top:3.2%; width:16%; height:3.2%; }
 
-    /* Botones “Lo quiero” */
-    .hs-p1{ left:9%;  top:49.5%; width:18%; height:3.3%; border-radius:999px; }
-    .hs-p2{ left:31%; top:49.5%; width:18%; height:3.3%; border-radius:999px; }
-    .hs-p3{ left:53%; top:49.5%; width:18%; height:3.3%; border-radius:999px; }
-    .hs-p4{ left:75%; top:49.5%; width:18%; height:3.3%; border-radius:999px; }
+    /* Productos */
+    .hs-p1{ left:9%;  top:49.5%; width:18%; height:3.3%; }
+    .hs-p2{ left:31%; top:49.5%; width:18%; height:3.3%; }
+    .hs-p3{ left:53%; top:49.5%; width:18%; height:3.3%; }
+    .hs-p4{ left:75%; top:49.5%; width:18%; height:3.3%; }
 
     /* Redes */
     .hs-ig{
@@ -128,7 +130,6 @@
       top:92.8%;
       width:11%;
       height:3%;
-      border-radius:10px;
     }
 
     .hs-tt{
@@ -136,7 +137,6 @@
       top:92.8%;
       width:11%;
       height:3%;
-      border-radius:10px;
     }
 
     .note{
@@ -146,7 +146,6 @@
       text-align:center;
     }
 
-    /* ===== INDICADOR DE VERSIÓN ===== */
     .version-badge{
       position: fixed;
       bottom: 10px;
@@ -163,11 +162,12 @@
   </style>
 </head>
 
-<body>
+<!-- ✅ DEBUG ACTIVADO: quita "debug" cuando ya esté ajustado -->
+<body class="debug">
+
   <div class="wrap">
     <div class="poster">
 
-      <!-- IMAGEN PROTOTIPO -->
       <img src="mockup.png" alt="Vístete con EVANARI" />
 
       <!-- WhatsApp ARRIBA -->
@@ -232,9 +232,7 @@
     <div class="note">Web creada por OMNELY’S Studio · Demo EVANARI</div>
   </div>
 
-  <!-- Badge versión (siempre visible para evitar caché) -->
   <div class="version-badge">Versión 1</div>
-
 </body>
 </html>
 
