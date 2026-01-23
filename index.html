@@ -5,146 +5,105 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vístete con EVANARI</title>
   <meta name="description" content="Moda para brillar. Compra fácil por WhatsApp." />
+
   <style>
-    :root {
-      --max-width: 520px; /* ancho maximo en móvil estilo “poster” */
+    :root { --max-width: 520px; }
+
+    body{
+      margin:0;
+      background:#ffffff;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      display:flex;
+      justify-content:center;
+      padding:18px 12px 40px;
     }
 
-    body {
-      margin: 0;
-      background: #ffffff;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      padding: 18px 12px 40px;
+    .wrap{ width:100%; max-width:var(--max-width); }
+
+    .poster{
+      position:relative;
+      width:100%;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
     }
 
-    .wrap {
-      width: 100%;
-      max-width: var(--max-width);
-    }
-
-    .poster {
-      position: relative;
-      width: 100%;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    }
-
-    .poster img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .poster img{ width:100%; height:auto; display:block; }
 
     /* HOTSPOTS: zonas clicables invisibles */
-    .hotspot {
-      position: absolute;
-      display: block;
-      /* para depurar: background: rgba(255,0,0,.25); */
-      background: transparent;
-      border-radius: 999px;
+    .hotspot{
+      position:absolute;
+      display:block;
+      background:transparent;
+      border-radius:999px;
     }
 
-    /* Botones grandes: WhatsApp arriba y abajo */
-    .hs-wa-top {
-      left: 32%;
-      top: 16.5%;
-      width: 36%;
-      height: 4.3%;
+    /* Botones WhatsApp (arriba y abajo) */
+    .hs-wa-top{
+      left:32%;
+      top:16.5%;
+      width:36%;
+      height:4.3%;
     }
 
-    .hs-wa-bottom {
-      left: 18%;
-      top: 86.3%;
-      width: 64%;
-      height: 5%;
+    .hs-wa-bottom{
+      left:18%;
+      top:86.3%;
+      width:64%;
+      height:5%;
     }
 
-    /* Menú arriba (Novedades, Catálogo, Cómo comprar, Contacto) */
-    .hs-novedades {
-      left: 36%;
-      top: 3.2%;
-      width: 15%;
-      height: 3.2%;
-      border-radius: 10px;
+    /* Menú */
+    .hs-novedades{
+      left:36%;
+      top:3.2%;
+      width:15%;
+      height:3.2%;
+      border-radius:10px;
     }
-    .hs-catalogo {
-      left: 52%;
-      top: 3.2%;
-      width: 15%;
-      height: 3.2%;
-      border-radius: 10px;
+    .hs-catalogo{
+      left:52%;
+      top:3.2%;
+      width:15%;
+      height:3.2%;
+      border-radius:10px;
     }
-    .hs-comprar {
-      left: 67%;
-      top: 3.2%;
-      width: 18%;
-      height: 3.2%;
-      border-radius: 10px;
+    .hs-comprar{
+      left:67%;
+      top:3.2%;
+      width:18%;
+      height:3.2%;
+      border-radius:10px;
     }
-    .hs-contacto {
-      left: 86%;
-      top: 3.2%;
-      width: 14%;
-      height: 3.2%;
-      border-radius: 10px;
-      transform: translateX(-30%);
-    }
-
-    /* Botones “Lo quiero” de 4 productos */
-    .hs-p1 {
-      left: 9%;
-      top: 49.5%;
-      width: 18%;
-      height: 3.3%;
-      border-radius: 999px;
-    }
-    .hs-p2 {
-      left: 31%;
-      top: 49.5%;
-      width: 18%;
-      height: 3.3%;
-      border-radius: 999px;
-    }
-    .hs-p3 {
-      left: 53%;
-      top: 49.5%;
-      width: 18%;
-      height: 3.3%;
-      border-radius: 999px;
-    }
-    .hs-p4 {
-      left: 75%;
-      top: 49.5%;
-      width: 18%;
-      height: 3.3%;
-      border-radius: 999px;
+    .hs-contacto{
+      left:86%;
+      top:3.2%;
+      width:14%;
+      height:3.2%;
+      border-radius:10px;
+      transform:translateX(-30%);
     }
 
-    /* Iconos redes (TikTok / Instagram) */
-    .hs-ig {
-      left: 40%;
-      top: 93.6%;
-      width: 9%;
-      height: 3%;
-      border-radius: 10px;
-    }
-    .hs-tt {
-      left: 51%;
-      top: 93.6%;
-      width: 9%;
-      height: 3%;
-      border-radius: 10px;
+    /* Botones “Lo quiero” de productos */
+    .hs-p1{ left:9%;  top:49.5%; width:18%; height:3.3%; }
+    .hs-p2{ left:31%; top:49.5%; width:18%; height:3.3%; }
+    .hs-p3{ left:53%; top:49.5%; width:18%; height:3.3%; }
+    .hs-p4{ left:75%; top:49.5%; width:18%; height:3.3%; }
+
+    /* TikTok (icono) */
+    .hs-tt{
+      left:46%;
+      top:93.6%;
+      width:11%;
+      height:3%;
+      border-radius:10px;
     }
 
-    /* Nota: las posiciones usan porcentajes del poster, así escala perfecto */
-    .note {
-      opacity: .7;
-      font-size: 12px;
-      margin-top: 10px;
-      text-align: center;
+    .note{
+      opacity:.7;
+      font-size:12px;
+      margin-top:10px;
+      text-align:center;
     }
   </style>
 </head>
@@ -153,11 +112,13 @@
   <div class="wrap">
     <div class="poster" id="top">
       <!-- TU PROTOTIPO -->
-      <img src="mockup.png" alt="EVANARI" />
+      <img src="mockup.png" alt="Vístete con EVANARI" />
 
-      <!-- LINKS / HOTSPOTS -->
-      <!-- WhatsApp (ARRIBA) -->
-      <a class="hotspot hs-wa-top" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20info%20sobre%20una%20prenda" target="_blank" aria-label="Pedir por WhatsApp"></a>
+      <!-- WhatsApp ARRIBA -->
+      <a class="hotspot hs-wa-top"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Vengo%20de%20TikTok%20y%20quiero%20hacer%20un%20pedido%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="Pedir por WhatsApp"></a>
 
       <!-- Menú -->
       <a class="hotspot hs-novedades" href="#novedades" aria-label="Novedades"></a>
@@ -165,20 +126,40 @@
       <a class="hotspot hs-comprar" href="#como-comprar" aria-label="Cómo comprar"></a>
       <a class="hotspot hs-contacto" href="#contacto" aria-label="Contacto"></a>
 
-      <!-- Productos (LO QUIERO -> WhatsApp con texto distinto) -->
-      <a class="hotspot hs-p1" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Vestido%20mini%20lazo%20en%20talla%20____" target="_blank" aria-label="Producto 1"></a>
-      <a class="hotspot hs-p2" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Conjunto%20satinado%20en%20talla%20____" target="_blank" aria-label="Producto 2"></a>
-      <a class="hotspot hs-p3" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Top%20rosa%20canal%C3%A9%20en%20talla%20____" target="_blank" aria-label="Producto 3"></a>
-      <a class="hotspot hs-p4" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Vestido%20verde%20brillos%20en%20talla%20____" target="_blank" aria-label="Producto 4"></a>
+      <!-- Productos (Lo quiero -> WhatsApp) -->
+      <a class="hotspot hs-p1"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Vestido%20mini%20lazo%20en%20talla%20____%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="Producto 1"></a>
 
-      <!-- WhatsApp (ABAJO) -->
-      <a class="hotspot hs-wa-bottom" href="https://wa.me/34TU_NUMERO?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20hacer%20un%20pedido" target="_blank" aria-label="WhatsApp"></a>
+      <a class="hotspot hs-p2"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Conjunto%20satinado%20en%20talla%20____%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="Producto 2"></a>
 
-      <!-- Redes -->
-      <a class="hotspot hs-ig" href="https://instagram.com/TU_INSTAGRAM" target="_blank" aria-label="Instagram"></a>
-      <a class="hotspot hs-tt" href="https://tiktok.com/@TU_TIKTOK" target="_blank" aria-label="TikTok"></a>
+      <a class="hotspot hs-p3"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Top%20rosa%20canal%C3%A9%20en%20talla%20____%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="Producto 3"></a>
 
-      <!-- Anclas: solo para el menú (no tienen que existir visualmente) -->
+      <a class="hotspot hs-p4"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20el%20Vestido%20verde%20brillos%20en%20talla%20____%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="Producto 4"></a>
+
+      <!-- WhatsApp ABAJO -->
+      <a class="hotspot hs-wa-bottom"
+         href="https://wa.me/34722347608?text=Hola%20EVANARI%20%F0%9F%92%95%20Quiero%20info%20sobre%20env%C3%ADos%20/recogida%20y%20hacer%20un%20pedido%20%E2%9C%A8"
+         target="_blank" rel="noopener"
+         aria-label="WhatsApp contacto"></a>
+
+      <!-- TikTok -->
+      <a class="hotspot hs-tt"
+         href="https://www.tiktok.com/@visteteconevanari"
+         target="_blank" rel="noopener"
+         aria-label="TikTok"></a>
+
+      <!-- ANCLAS para el menú -->
       <span id="novedades" style="position:absolute;top:38%;"></span>
       <span id="catalogo" style="position:absolute;top:38%;"></span>
       <span id="como-comprar" style="position:absolute;top:63%;"></span>
@@ -186,7 +167,7 @@
     </div>
 
     <div class="note">
-      Prototipo publicado con GitHub Pages · Diseño EVANARI · Web por OMNELY’S Studio
+      Web creada por OMNELY’S Studio · Demo EVANARI
     </div>
   </div>
 </body>
