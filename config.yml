@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/productos"
+public_folder: "/assets/productos"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    file: "data/productos.json"
+    fields:
+      - label: "Productos"
+        name: "items"
+        widget: "list"
+        summary: "{{fields.nombre}}"
+        fields:
+          - { label: "Nombre", name: "nombre", widget: "string" }
+          - { label: "Precio", name: "precio", widget: "string" }
+          - { label: "Imagen", name: "imagen", widget: "image" }
+          - { label: "Activo", name: "activo", widget: "boolean", default: true }
